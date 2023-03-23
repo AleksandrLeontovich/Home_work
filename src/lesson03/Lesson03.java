@@ -1,5 +1,6 @@
 package lesson03;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Lesson03 {
@@ -51,13 +52,16 @@ public class Lesson03 {
         // Задача 3
 
 
-        int randNumber ;
-        randNumber = (int)(Math.random() * 9 + 1);
+        /* int randNumber ;
+        randNumber = (int)(Math.random() * 9 + 1); */
+        Random rand1 = new Random();
+        int randNumber = rand1.nextInt(8) + 1; //
         System.out.println("Чтобы отгадать, какое число загадал компьютер, введите значение от 1 до 9");
-        while (randNumber != 0) {
+        while (true) {
             Scanner in1 = new Scanner(System.in);
             int userGuess = in1.nextInt();
-            if (userGuess == 0) break;
+            if (userGuess == 0) { System.out.println("выход из программы");
+            break; }
             if (userGuess > randNumber) {
                 System.out.println("Загаданное число меньше");
             }
@@ -66,7 +70,35 @@ public class Lesson03 {
             }
             else if (userGuess == randNumber){
                 System.out.println("Вы угадали");
+                break;
             }
         }
+
+
+        int number = 50;
+        int start = 2;
+        int finish = 100;
+        while (true) {
+            System.out.println("Загаданное число равно " + number + " ?");
+            Scanner in2 = new Scanner(System.in);
+            int answer = in2.nextInt();
+            if (answer == 0) {
+                System.out.println("Загаданное число больше " + number + " ?");
+                answer = in2.nextInt();
+                if (answer == 0){
+                    finish = number;
+                }
+                else {
+                    start = number;
+                }
+                number = (finish +start) / 2;
+                }
+            else {
+                System.out.println("Вы угадали");
+                break;
+            }
+        }
+
+
     }
 }
